@@ -1,0 +1,32 @@
+id: supershell-default-login
+
+info:
+  name: SuperShell Default Credentials
+  author: Saboor_Hakimi
+  severity: high
+  description: Checks for default credentials (tdragon6:tdragon6) in Supershell C2 infrastructure.
+  reference:
+    - https://github.com/tdragon6/Supershell/blob/main/README_EN.md
+  classification:
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L
+    cvss-score: 8.3
+    cwe-id: CWE-522
+  tags: sueprshell,default-login
+
+requests:
+  # send a dummy get ruquest to google and check status code 200
+  - raw:
+      - |
+        POST /supershell/login/auth HTTP/1.1
+        Host: {{Hostname}}
+        Content-Type: application/json
+
+        {"username":"tdragon6","password":"tdragon6"}
+
+    matchers:
+      # match on a json result: success
+      - type: word
+        words:
+          - "success"
+        condition: and
+        part: body
