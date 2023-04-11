@@ -1,0 +1,20 @@
+# UNIQUE ID
+id: node-express
+
+# INFORMATION SECTION
+info:
+    name: Node Express Technology
+    author: Saboor_Hakimi
+    severity: info
+
+# PROTOCOL SECTION
+http:
+    - method: GET
+      path:
+          - "{{BaseURL}}"
+      matchers:
+          - type: word
+            name: Express
+            words:
+                - "X-Powered-By: Express"
+            part: header
