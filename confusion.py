@@ -4,12 +4,12 @@ import hashlib
 
 
 
-f = open("key.pem")
+f = open("public.pem")
 key = f.read()
 
 
 
-str = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpbiI6ImFkbWluIn0"
+str = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9Cg.eyJsb2dpbiI6ImFkbWluIn0K"
 
 
 sig = base64.urlsafe_b64encode(hmac.new(bytes(key,encoding='utf8'), str.encode('utf-8'), hashlib.sha256).digest()).decode('UTF-8').rstrip("=")
